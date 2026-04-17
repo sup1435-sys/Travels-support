@@ -1,68 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Crypto Help Center | Binance, Robinhood, Trust Wallet Support Guide</title>
-
-<meta name="description" content="Get help for crypto issues including Binance, Robinhood, Trust Wallet, Bitcoin wallets and transaction problems.">
-
-<meta name="keywords" content="trust wallet help, binance help, robinhood crypto support, crypto wallet issue, bitcoin problem">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<title>American Travel Services</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #0f172a;
-  color: white;
+body{
+  margin:0;
+  font-family:Arial;
+  background:#0b1220;
+  color:white;
 }
 
-.header {
-  background: #020617;
-  padding: 20px;
-  text-align: center;
-}
-.header h1 {
-  margin: 0;
-}
-.header p {
-  color: #9ca3af;
-  font-size: 14px;
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 40px;
+  background:#08142b;
+  position:sticky;
+  top:0;
 }
 
-.container {
-  padding: 20px 40px;
+.logo{font-weight:bold;font-size:20px;}
+
+.nav a{
+  color:white;
+  margin:0 10px;
+  text-decoration:none;
+  cursor:pointer;
 }
 
-.card {
-  background: #1e293b;
-  padding: 25px;
-  border-radius: 12px;
-  margin-bottom: 25px;
-  cursor: pointer;
+.section{
+  display:none;
+  padding:50px 40px;
 }
 
-.call-btn {
-  display: block;
-  text-align: center;
-  margin: 30px auto;
-  width: 250px;
-  padding: 14px;
-  background: red;
-  color: white;
-  font-weight: bold;
-  border-radius: 8px;
-  text-decoration: none;
+.active{display:block;}
+
+.hero{
+  height:80vh;
+  background:url('https://images.unsplash.com/photo-1506929562872-bb421503ef21') center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.hero h1{font-size:38px;}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:#121c33;
+  padding:15px;
+  border-radius:10px;
+}
+
+.card img{
+  width:100%;
+  height:170px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.row{
+  display:flex;
+  gap:20px;
+  align-items:center;
+}
+
+.row img{
+  width:45%;
+  border-radius:10px;
+}
+
+.btn{
+  display:inline-block;
+  padding:10px 15px;
+  border-radius:8px;
+  text-decoration:none;
+  margin:5px;
+  font-weight:bold;
+}
+
+.call{background:red;color:white;}
+.wa{background:#25D366;color:white;}
+
+.subscribe input{
+  padding:10px;
+  width:200px;
+}
+
+.subscribe button{
+  padding:10px 15px;
+  background:#ff9900;
+  border:none;
+  color:white;
+}
+
+.footer{
+  text-align:center;
+  padding:20px;
+  background:#08142b;
+}
+
+.bottom-logo{
+  position:fixed;
+  bottom:10px;
+  left:10px;
+  background:#08142b;
+  padding:8px 12px;
+  border-radius:8px;
+  font-size:13px;
 }
 </style>
 
 <script>
-function callNow() {
-  window.location.href = "tel:+18389008604";
+function show(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function saveLead(e){
+  e.preventDefault();
+  let name=document.getElementById("name").value;
+  let dest=document.getElementById("dest").value;
+  let date=document.getElementById("date").value;
+
+  let leads=JSON.parse(localStorage.getItem("leads")||"[]");
+  leads.push({name,dest,date,time:new Date().toLocaleString()});
+  localStorage.setItem("leads",JSON.stringify(leads));
+
+  alert("Booking Saved!");
+}
+
+function showLeads(){
+  let leads=JSON.parse(localStorage.getItem("leads")||"[]");
+  let box=document.getElementById("leadBox");
+
+  if(leads.length===0){
+    box.innerHTML="No bookings yet";
+    return;
+  }
+
+  box.innerHTML=leads.map(l=>`
+    <div style="background:#121c33;padding:10px;margin:10px 0;border-radius:8px;">
+      <b>${l.name}</b><br>
+      ${l.dest} - ${l.date}<br>
+      ${l.time}
+    </div>
+  `).join("");
 }
 </script>
 
@@ -71,51 +165,141 @@ function callNow() {
 <body>
 
 <div class="header">
-  <h1>🚀 Crypto Help Center</h1>
-  <p>
-  Help for Binance, Robinhood, Trust Wallet, Bitcoin & other crypto platforms
-  </p>
+  <div class="logo">🇺🇸 American Travel</div>
+  <div class="nav">
+    <a onclick="show('home')">Home</a>
+    <a onclick="show('about')">About</a>
+    <a onclick="show('cities')">Cities</a>
+    <a onclick="show('cultures')">Cultures</a>
+    <a onclick="show('contact')">Contact</a>
+    <a onclick="show('admin')">Admin</a>
+  </div>
 </div>
 
-<div class="container">
+<!-- HOME -->
+<div id="home" class="section active">
+  <div class="hero">
+    <div>
+      <h1>See The World From The Inside</h1>
 
-<div class="card" onclick="callNow()">
-<h2>Fix Binance, Robinhood & Trust Wallet Transactions</h2>
-<p>
-Users of platforms like Binance, Robinhood and Trust Wallet may face issues such as pending transactions, delays or failed transfers due to network congestion or incorrect fees.
-</p>
-<p>
-Always verify transactions using blockchain explorers and ensure correct wallet address and network selection.
-</p>
+      <a href="tel:+18001234567" class="btn call">🎫 Book Ticket</a>
+      <a href="https://wa.me/18001234567" class="btn wa">💬 WhatsApp</a>
+
+      <p style="color:#ffcc00;">🔥 Up to 40% Discount</p>
+    </div>
+  </div>
 </div>
 
-<div class="card" onclick="callNow()">
-<h2>Security Guide for Trust Wallet & Crypto Users</h2>
-<p>
-Trust Wallet and other crypto users must never share private keys or recovery phrases. Enable 2FA and avoid phishing links.
-</p>
-<p>
-Use only official apps and double-check URLs before logging in to protect your funds.
-</p>
+<!-- ABOUT -->
+<div id="about" class="section">
+<h2>About</h2>
+<p>We provide travel guides and real city experiences.</p>
 </div>
 
-<div class="card" onclick="callNow()">
-<h2>Beginner Guide for Binance, Robinhood & Trust Wallet</h2>
-<p>
-Start by creating an account, securing your wallet and learning how to send and receive crypto safely.
-</p>
-<p>
-Always begin with small investments and understand transaction fees and risks.
-</p>
+<!-- CITIES -->
+<div id="cities" class="section">
+<h2>Cities</h2>
+
+<div class="grid">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1534447677768-be436bb09401">
+<h3>New York</h3>
+<p>Fast city life and skyscrapers.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34">
+<h3>Paris</h3>
+<p>Fashion and romance.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c">
+<h3>Tokyo</h3>
+<p>Technology and tradition.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c">
+<h3>Dubai</h3>
+<p>Luxury lifestyle.</p>
 </div>
 
 </div>
-
-<a href="tel:+18389008604" class="call-btn">📞 Call Now</a>
-
-<div style="text-align:center; padding:20px; font-size:12px; color:gray;">
-This website is for informational purposes only. We are not affiliated with Binance, Robinhood, Trust Wallet or any other platform.
 </div>
+
+<!-- CULTURES -->
+<div id="cultures" class="section">
+<h2>Cultures</h2>
+
+<div class="grid">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+<h3>American</h3>
+<p>Diversity & innovation.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308">
+<h3>Indian</h3>
+<p>Festivals & traditions.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34">
+<h3>French</h3>
+<p>Art & fashion.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c">
+<h3>Japanese</h3>
+<p>Modern + traditional.</p>
+</div>
+
+</div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="section">
+
+<h2>Contact</h2>
+
+<div class="row">
+<img src="https://images.unsplash.com/photo-1587614382346-4ec70e388b28">
+
+<div>
+
+<p>Email: support@travel.com</p>
+<p>Phone: +1 800 123 4567</p>
+
+<h3>Book Now</h3>
+
+<form onsubmit="saveLead(event)">
+<input id="name" placeholder="Name"><br><br>
+<input id="dest" placeholder="Destination"><br><br>
+<input id="date" type="date"><br><br>
+<button class="btn call" type="submit">Submit</button>
+</form>
+
+</div>
+</div>
+</div>
+
+<!-- ADMIN -->
+<div id="admin" class="section">
+<h2>Admin Panel</h2>
+
+<button class="btn wa" onclick="showLeads()">Show Bookings</button>
+
+<div id="leadBox"></div>
+</div>
+
+<div class="footer">© 2026 Travel Services</div>
+
+<div class="bottom-logo">🇺🇸 Travel</div>
 
 </body>
 </html>
